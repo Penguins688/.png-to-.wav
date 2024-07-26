@@ -1,5 +1,4 @@
 from PIL import Image
-import random
 
 color_dict = {
     'red': (255, 0, 0),
@@ -24,8 +23,6 @@ color_dict = {
     'maroon': (128, 0, 0)
 }
 
-color_name = ""
-
 def get_color_input(prompt):
     while True:
         color_name = input(prompt).strip().lower()
@@ -34,21 +31,19 @@ def get_color_input(prompt):
         else:
             print("Error: Invalid color name. Please enter a valid color name.")
 
-def add_noise(base_color, intensity=30):
-    r, g, b = base_color
-    r = min(max(r + random.randint(-intensity, intensity), 0), 255)
-    g = min(max(g + random.randint(-intensity, intensity), 0), 255)
-    b = min(max(b + random.randint(-intensity, intensity), 0), 255)
-    return (r, g, b)
-
-base_color = get_color_input("Enter the base color (e.g., red, blue): ")
+start_color = get_color_input("Enter the start color (e.g., red, blue): ")
+end_color = get_color_input("Enter the end color (e.g., red, blue): ")
 
 width, height = 1000, 1000
 image = Image.new("RGB", (width, height))
 
-for y in range(height):
-    for x in range(width):
-        color_with_noise = add_noise(base_color)
-        image.putpixel((x, y), color_with_noise)
+for x in range(width):
+    blend = x / (width - 1)
+    r = int(start_color[0] * (1 - blend) + end_color[0] * blend)
+    g = int(start_color[1] * (1 - blend) + end_color[1] * blend)
+    b = int(start_color[2] * (1 - blend) + end_color[2] * blend)
+    for y in range(height):
+        image.putpixel((x, y), (r, g, b))
 
-image.save("color.png")
+image.save("gradient.png")
+print("Gradient image saved as 'gradient.png'.")
