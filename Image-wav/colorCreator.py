@@ -24,12 +24,11 @@ color_dict = {
     'maroon': (128, 0, 0)
 }
 
-requested_color = 0
+color_name = ""
 
 def get_color_input(prompt):
     while True:
         color_name = input(prompt).strip().lower()
-        requested_color = color_name
         if color_name in color_dict:
             return color_dict[color_name]
         else:
@@ -52,4 +51,4 @@ for y in range(height):
         color_with_noise = add_noise(base_color)
         image.putpixel((x, y), color_with_noise)
 
-image.save(requested_color + ".png")
+image.save("color.png")
