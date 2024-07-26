@@ -21,14 +21,19 @@ python colorCreator.py
 
 <br>
 
-**Next, reques a color**
+**Next, request the first color in the gradient:**
 ```console
-Enter the base color (e.g., red, blue):<your color here>
+Enter the start color (e.g., red, blue):<your color here>
+```
+
+**Now, the last color in the gradient:**
+```console
+Enter the end color (e.g., red, blue):<your color here>
 ```
 
 <br>
 
-**You can then input the <color>.png file as the .png file you want to hear**
+**You can then input the gradient.png file as the .png file you want to hear**
 
 ## Converting
 
